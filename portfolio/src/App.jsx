@@ -199,7 +199,7 @@ function App() {
                 <div className="orbit-ring ring-2" />
                 <div className="orbit-ring ring-3" />
                 <div className="core-orb">
-                   <span>&lt;A/&gt;</span>
+                   <span>&lt;A&gt;</span>
                  
                 </div>
                 <div className="orbit-tag tag-1">C++</div>
