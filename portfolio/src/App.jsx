@@ -199,8 +199,8 @@ function App() {
                 <div className="orbit-ring ring-2" />
                 <div className="orbit-ring ring-3" />
                 <div className="core-orb">
-                  <span>AA</span>
-                  <small>build / optimize / ship</small>
+                   <span>&lt;A/&gt;</span>
+                 
                 </div>
                 <div className="orbit-tag tag-1">C++</div>
                 <div className="orbit-tag tag-2">.NET</div>
