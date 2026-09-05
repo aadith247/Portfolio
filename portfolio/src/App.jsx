@@ -60,6 +60,16 @@ const LINKS = {
 const projects = [
   {
     num: '01',
+    title: 'Chronicle',
+    label: 'Low-latency trading simulator',
+    copy: 'A C++20 electronic-trading simulator with binary UDP market data, L2 order-book reconstruction, TCP order entry, deterministic record/replay and sequence-gap recovery.',
+    impact: ['binary UDP feed', 'p50 / p99 / p99.9 latency', 'fault-injected replay'],
+    stack: ['C++20', 'Linux', 'TCP/UDP', 'epoll/kqueue', 'Lock-free SPSC', 'CMake'],
+    github: 'https://github.com/aadith247/Chronicle/tree/main',
+    visual: 'trading',
+  },
+  {
+    num: '02',
     title: 'QuickLearn.AI',
     label: 'AI learning platform',
     copy: 'Turns a single topic into a structured learning path with generated chapters, code examples, key points and curated video resources.',
@@ -70,7 +80,7 @@ const projects = [
     visual: 'ai',
   },
   {
-    num: '02',
+    num: '03',
     title: 'LiveDocs',
     label: 'Distributed collaborative editor',
     copy: 'A Google-Docs-style editor built around a custom RGA CRDT, authenticated WebSockets, room isolation and persistent storage.',
@@ -80,7 +90,7 @@ const projects = [
     visual: 'crdt',
   },
   {
-    num: '03',
+    num: '04',
     title: 'Astra',
     label: 'Compiler from scratch',
     copy: 'A Hindi-inspired programming language compiler with lexical analysis, CFG parsing, AST construction and single-pass code generation to C.',
@@ -92,10 +102,10 @@ const projects = [
 ]
 
 const skillGroups = [
-  { title: 'Languages', icon: Code2, items: ['C++', 'Java', 'C', 'C#', 'Go', 'JavaScript', 'TypeScript'] },
-  { title: 'Backend + Systems', icon: Cpu, items: ['.NET', 'Node.js', 'REST APIs', 'WebSockets', 'Multithreading', 'Distributed Systems'] },
+  { title: 'Languages', icon: Code2, items: ['C++', 'C', 'C#', 'Go', 'Java', 'JavaScript', 'TypeScript'] },
+  { title: 'Backend + Systems', icon: Cpu, items: ['Linux', 'TCP/UDP', 'Multithreading', 'Distributed Systems', '.NET', 'Node.js', 'WebSockets'] },
   { title: 'Frontend', icon: Sparkles, items: ['React', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3'] },
-  { title: 'Data + Tools', icon: Braces, items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Git', 'Linux', 'Vercel'] },
+  { title: 'Data + Tools', icon: Braces, items: ['PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'Git', 'CMake', 'Postman', 'Vercel'] },
 ]
 
 function useTheme() {
@@ -170,7 +180,7 @@ function App() {
                 <br /> reliable & useful.
               </h1>
               <p className="hero-lede reveal delay-2">
-                I’m Thatipally Aadithhya — a software engineer focused on low-latency systems, distributed backends and product-minded engineering.
+                I’m Thatipally Aadithhya — a software engineer focused on low-latency trading systems, systems programming, distributed backends and performance engineering.
               </p>
               <div className="hero-actions reveal delay-3">
                 <a className="btn primary" href="#work">Explore my work <ArrowDownRight size={18}/></a>
@@ -209,7 +219,7 @@ function App() {
         </section>
 
         <section id="work" className="shell section-pad">
-          <SectionHead index="01" eyebrow="Selected work" title="Things I’ve built." copy="Projects where the interesting part lives under the surface: synchronization, generation pipelines, compilers and systems design." />
+          <SectionHead index="01" eyebrow="Selected work" title="Things I’ve built." copy="Projects where the interesting part lives under the surface: market-data pipelines, lock-free queues, synchronization, generation systems and compilers." />
           <div className="project-list">
             {projects.map((p) => <ProjectCard key={p.title} p={p} />)}
           </div>
@@ -230,7 +240,7 @@ function App() {
               <div className="experience-impact">
                 <div><strong>2s → &lt;10ms</strong><span>Re-engineered C#/.NET backend order-management state handling.</span></div>
                 <div><strong>10,000+</strong><span>Trades processed daily through low-latency production workflows.</span></div>
-                <div><strong>10+</strong><span>Risk & compliance controls plus a React monitoring dashboard.</span></div>
+                <div><strong>3</strong><span>Risk & compliance controls plus a React monitoring dashboard.</span></div>
               </div>
               <div className="mini-stack"><span>C#</span><span>.NET</span><span>Trading Systems</span><span>React</span><span>Concurrency</span></div>
             </article>
@@ -301,7 +311,7 @@ function App() {
               <div className="terminal-top"><i/><i/><i/><span>aadithhya@dev</span></div>
               <div className="terminal-body">
                 <p><em>$</em> focus --areas</p>
-                <p className="output">low-latency · distributed-systems · backend</p>
+                <p className="output">low-latency · trading-systems · distributed-systems</p>
                 <p><em>$</em> status</p>
                 <p className="output good">shipping consistently ✓</p>
                 <p><em>$</em><span className="caret">_</span></p>
@@ -315,7 +325,7 @@ function App() {
             <div>
               <span className="contact-kicker">Have an interesting engineering problem?</span>
               <h2>Let’s build something <span className="grad-text">fast.</span></h2>
-              <p>I’m especially interested in backend, systems, low-latency and product engineering opportunities.</p>
+              <p>I’m especially interested in low-latency, trading systems, backend and systems engineering opportunities.</p>
             </div>
             <div className="contact-actions">
               <a className="btn light" href={LINKS.email}>taadithhya@gmail.com <Mail size={17}/></a>
@@ -374,6 +384,31 @@ function ProjectCard({ p }) {
 }
 
 function ProjectVisual({ type }) {
+  if (type === 'trading') return <div className="project-visual trading-visual" aria-hidden="true">
+    <div className="market-topline">
+      <span>CHRONICLE / L2 SIM</span><span className="market-live">● LIVE</span>
+    </div>
+    <div className="market-grid">
+      <div className="orderbook-panel">
+        <div className="ob-head"><span>PRICE</span><span>SIZE</span></div>
+        <div className="ask row"><span>100.14</span><span>4.82</span></div>
+        <div className="ask row"><span>100.12</span><span>2.16</span></div>
+        <div className="ask row"><span>100.10</span><span>7.41</span></div>
+        <div className="mid-price"><span>100.09</span><small>SPREAD 0.01</small></div>
+        <div className="bid row"><span>100.08</span><span>6.32</span></div>
+        <div className="bid row"><span>100.06</span><span>3.90</span></div>
+        <div className="bid row"><span>100.04</span><span>8.11</span></div>
+      </div>
+      <div className="latency-panel">
+        <span className="latency-label">PIPELINE LATENCY</span>
+        <div className="latency-chart"><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/><i/></div>
+        <div className="latency-stats"><div><small>p50</small><strong>tracked</strong></div><div><small>p99</small><strong>tracked</strong></div><div><small>p99.9</small><strong>tracked</strong></div></div>
+        <div className="packet-flow"><span>UDP</span><b>→</b><span>L2 BOOK</span><b>→</b><span>SPSC</span><b>→</b><span>TCP</span></div>
+      </div>
+    </div>
+    <div className="replay-pill">record · replay · recover</div>
+  </div>
+
   if (type === 'ai') return <div className="project-visual ai-visual" aria-hidden="true">
     <div className="ai-window">
       <div className="window-head"><i/><i/><i/><span>course.generate()</span></div>

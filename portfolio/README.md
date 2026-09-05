@@ -46,3 +46,8 @@ The site intentionally combines:
 - custom project visuals rather than generic stock photos,
 - subtle motion and cursor light,
 - responsive + reduced-motion support.
+
+
+## Featured systems project
+
+The portfolio now leads with **Chronicle**, a C++20 low-latency electronic trading simulator featuring binary UDP market data, L2 order-book reconstruction, TCP order entry, deterministic record/replay, sequence-gap recovery, fault injection, a cache-aligned lock-free SPSC queue, and p50/p99/p99.9 latency benchmarking.
